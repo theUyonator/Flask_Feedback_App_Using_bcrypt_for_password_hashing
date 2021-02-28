@@ -1,0 +1,29 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+
+
+<div class="container">
+
+    {% for feedback in feedbacks %}
+
+    <div class="card w-80 my-4">
+        <div class="card-body">
+          <h5 class="card-title">{{feedback.title}}</h5>
+          <p class="card-text">{{feedback.content}}</p>
+          <small>{{feedback.user.full_name}}</small>
+        {% if session['username'] == feedback.user.username %}
+          <form class="my-3">
+          <a href="/feedback/{{feedback.id}}/update" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Edit</a>
+          <button formaction="/feedback/{{feedback.id}}/delete" class="btn btn-outline-danger btn-sm" 
+          formmethod="POST">Delete</button>
+          </form>
+        {% endif %}
+        </div>
+      </div>
+   {% endfor %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+
+
+<div class="container">
+
+<h1 class="display-3">{{user.username}}</h1>
+
+<p class="lead"><b>First Name:</b> {{user.first_name}}</p>
+
+<p class="lead"><b>Last Name:</b> {{user.last_name}}</p>
+
+<p class="lead"><b>email:</b> {{user.email}}</p>
+
+{% if user.feedbacks %}
+
+    {% for feedback in user.feedbacks %}
+
+    <div class="card w-80 my-4">
+        <div class="card-body">
+          <h5 class="card-title">{{feedback.title}}</h5>
+          <p class="card-text">{{feedback.content}}</p>
+          <form>
+          <a href="/feedback/{{feedback.id}}/update" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Edit</a>
+          <button formaction="/feedback/{{feedback.id}}/delete" class="btn btn-outline-danger btn-sm" 
+          formmethod="POST">Delete</button>
+          </form>
+        </div>
+      </div>
+   {% endfor %}
+{% endif %}
+
+
+
+<form action="/users/{{user.username}}/delete" method="POST">
+    <a href="/users/{{user.username}}/feedback/add" class="btn btn-outline-secondary btn-lg" role="button" aria-pressed="true">Add Feedback</a>
+    <button class="btn btn-danger btn-lg text-light"><i class="fas fa-trash-alt">Delete Account </i></button>
+</form>
+
+</div>
+
+{% endblock %}

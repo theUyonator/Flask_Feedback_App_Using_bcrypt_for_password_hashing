@@ -1,0 +1,21 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+
+
+<div class="container">
+
+<h1 class="display-3">Add Feedback</h1>
+
+<form method="POST">
+
+    {% include "form.html" %}
+
+    <a href="/users/{{session['username']}}" class="btn btn-outline-secondary btn-lg" role="button" aria-pressed="true">Back</a>
+    <button class="btn btn-success btn-lg text-light">Add</button>
+
+</form>
+
+</div>
+
+{% endblock %}
