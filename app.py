@@ -4,12 +4,13 @@ from models import connect_db, db, User, Feedback
 from forms import RegisterUserForm, LoginUserForm, AddFeedbackForm, EditFeedbackForm
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import Unauthorized
+import os
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgres:///flask_feedback_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "feedbackloop"
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'f33b9ck')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 
