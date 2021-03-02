@@ -53,7 +53,7 @@ def register_new_user():
     #To make sure that a user stays logged in after registering, the username is added to the session   
         session["username"] = new_user.username
         flash("Welcome, your account has succesffully been created", "success")
-        return redirect(f"/user/{new_user.username}")
+        return redirect(f"/users/{new_user.username}")
 
     return render_template("register.html", form=form)
 
